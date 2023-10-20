@@ -1,53 +1,78 @@
-<div class="vh-100 d-flex justify-content-center d-flex align-items-center">
-  <div class="border border-black h-50 w-50">
-    <h5 class="text-center text-uppercase my-5">formulario de registro</h5>
-    <div class="bg-black border-bottom mb-5"></div>
+<div class="vh-100 d-flex justify-content-center align-items-center">
+  <div class="border border-black h-50 p-4">
+    <h5 class="text-center text-uppercase mb-4">Formulario de Registro</h5>
+    <div class="bg-black border-bottom mb-4"></div>
 
-    <div class="mb-5">
+    <div class="mb-4">
       <div class="input-group mb-3">
         <input
           type="text"
-          class="form-control mx-5"
-          placeholder="Username"
-          aria-label="Username"
+          class="form-control"
+          placeholder="Id"
+          aria-label="Id"
         />
-
+        <div class="space"></div>
         <input
           type="text"
-          class="form-control mx-5"
-          placeholder="Server"
-          aria-label="Server"
+          class="form-control"
+          placeholder="Nombre"
+          aria-label="Nombre"
         />
       </div>
       <div class="input-group mb-3">
         <input
           type="text"
-          class="form-control mx-5"
-          placeholder="Username"
-          aria-label="Username"
+          class="form-control"
+          placeholder="Descripción"
+          aria-label="Descripción"
         />
-
+        <div class="space"></div>
         <input
           type="text"
-          class="form-control mx-5"
-          placeholder="Server"
-          aria-label="Server"
+          class="form-control"
+          placeholder="Logo"
+          aria-label="Logo"
         />
       </div>
-      <div class="input-group mb-3">
-        <input
-          type="text"
-          class="form-control mx-5"
-          placeholder="Username"
-          aria-label="Username"
-        />
-
-        <input
-          type="text"
-          class="form-control mx-5"
-          placeholder="Server"
-          aria-label="Server"
-        />
+      <div class="input-group mb-3 row">
+        <div class="col mb-3">
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp1"
+              [(ngModel)]="model"
+              ngbDatepicker
+              #d1="ngbDatepicker"
+            />
+            <button
+              class="btn btn-outline-secondary bi bi-calendar3"
+              (click)="d1.toggle()"
+              type="button"
+            >
+              <i class="fa-regular fa-clock"></i>
+            </button>
+          </div>
+        </div>
+        <div class="col mb-3">
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp2"
+              [(ngModel)]="model"
+              ngbDatepicker
+              #d2="ngbDatepicker"
+            />
+            <button
+              class="btn btn-outline-secondary bi bi-calendar3"
+              (click)="d2.toggle()"
+              type="button"
+            >
+              <i class="fa-regular fa-clock"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

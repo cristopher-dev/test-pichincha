@@ -7,20 +7,30 @@ import { ListaProductosComponent } from './component/lista-productos/lista-produ
 import { FormularioProductoComponent } from './component/formulario-producto/formulario-producto.component';
 import { MenuContextualComponent } from './component/menu-contextual/menu-contextual.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbAlertModule,
+  NgbDatepickerModule,
+} from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaProductosComponent,
     FormularioProductoComponent,
-    MenuContextualComponent
+    MenuContextualComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    NgbAlertModule,
+    NgbDatepickerModule,
+    FormsModule,
+    JsonPipe,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
