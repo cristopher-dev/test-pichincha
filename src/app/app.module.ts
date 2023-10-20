@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ListaProductosComponent } from './component/lista-productos/lista-productos.component';
 import { FormularioProductoComponent } from './component/formulario-producto/formulario-producto.component';
 import { MenuContextualComponent } from './component/menu-contextual/menu-contextual.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MenuContextualComponent } from './component/menu-contextual/menu-contex
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
