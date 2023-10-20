@@ -1,0 +1,13 @@
+<table id="customers">
+  <tr>
+    <th *ngFor="let item of header">{{ item.th }}</th>
+  </tr>
+  <tr *ngFor="let item of body" (click)="rowClick($event, item)" class="pointer">
+    <td>{{ item.id }}</td>
+    <td>{{ item.name }}</td>
+    <td>{{ item.description }}</td>
+    <td>{{ item.logo }}</td>
+    <td>{{ item.date_release }}</td>
+    <td>{{ item.date_revision }}</td>
+  </tr>
+</table>

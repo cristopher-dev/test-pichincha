@@ -23,6 +23,7 @@ import {
   NgbDatepickerModule,
   NgbPaginationModule,
 } from '@ng-bootstrap/ng-bootstrap';
+import { TablesComponent } from './shared/tables/tables.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {
     ListaProductosComponent,
     MenuContextualComponent,
     FormularioProductoComponent,
+    TablesComponent,
   ],
   imports: [
     JsonPipe,
