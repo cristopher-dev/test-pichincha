@@ -1,36 +1,51 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { JsonPipe, DecimalPipe } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
+// ROUTER
 import { AppRoutingModule } from './app-routing.module';
+
+// DIRECTIVE
+import { NgbdSortableHeader } from './component/lista-productos/directive/sortable.directive';
+
+// COMPONENT
 import { AppComponent } from './app.component';
 import { ListaProductosComponent } from './component/lista-productos/lista-productos.component';
-import { FormularioProductoComponent } from './component/formulario-producto/formulario-producto.component';
 import { MenuContextualComponent } from './component/menu-contextual/menu-contextual.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormularioProductoComponent } from './component/formulario-producto/formulario-producto.component';
+
+// LIBRARIES
 import {
+  NgbModule,
   NgbAlertModule,
+  NgbTypeaheadModule,
   NgbDatepickerModule,
+  NgbPaginationModule,
 } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaProductosComponent,
-    FormularioProductoComponent,
     MenuContextualComponent,
+    FormularioProductoComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    NgbAlertModule,
-    NgbDatepickerModule,
-    FormsModule,
     JsonPipe,
+    NgbModule,
+    FormsModule,
+    DecimalPipe,
+    BrowserModule,
+    NgbAlertModule,
+    AppRoutingModule,
+    NgbdSortableHeader,
+    NgbTypeaheadModule,
+    NgbPaginationModule,
+    NgbDatepickerModule,
   ],
-  providers: [],
+  providers: [DecimalPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
