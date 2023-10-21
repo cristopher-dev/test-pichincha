@@ -1,0 +1,11 @@
+<!-- dropdown.component.html -->
+<div class="dropdown" (click)="toggleDropdown()">
+  <i class="fa-solid fa-ellipsis-vertical"></i>
+  <div
+    id="myDropdown"
+    class="dropdown-content"
+    [ngClass]="{ show: isDropdownOpen }"
+  >
+    <a *ngFor="let item of list" (click)="click(item.id)">{{ item.value }}</a>
+  </div>
+</div>

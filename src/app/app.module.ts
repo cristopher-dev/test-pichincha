@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JsonPipe, DecimalPipe } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -24,7 +24,7 @@ import {
   NgbPaginationModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { TablesComponent } from './shared/tables/tables.component';
-
+import { DropdownComponent } from './shared/dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { TablesComponent } from './shared/tables/tables.component';
     MenuContextualComponent,
     FormularioProductoComponent,
     TablesComponent,
+    DropdownComponent,
   ],
   imports: [
     JsonPipe,
@@ -46,6 +47,7 @@ import { TablesComponent } from './shared/tables/tables.component';
     NgbTypeaheadModule,
     NgbPaginationModule,
     NgbDatepickerModule,
+    ReactiveFormsModule,
   ],
   providers: [DecimalPipe],
   bootstrap: [AppComponent],
