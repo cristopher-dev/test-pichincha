@@ -1,4 +1,10 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-dropdown',
@@ -11,6 +17,9 @@ export class DropdownComponent {
     { id: 'deleted', value: 'eliminar' },
     { id: 'edit', value: 'editar' },
   ];
+
+  @Output() onClick: EventEmitter<Event> = new EventEmitter<Event>();
+
   constructor(private el: ElementRef) {}
 
   toggleDropdown() {
@@ -25,6 +34,6 @@ export class DropdownComponent {
   }
 
   click(event) {
-    console.log(event);
+    this.onClick.emit(event);
   }
 }
