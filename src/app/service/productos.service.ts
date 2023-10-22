@@ -14,8 +14,9 @@ export class ProductosService {
   // Obtener todos los productos
   getProducts(): Observable<Product[]> {
     const headers = new HttpHeaders().set('authorId', '21755026');
+    const url: string = `${this.apiUrl}/ipf-msa-productosfinancieros/bp/products`;
 
-    return this.http.get<Product[]>(this.apiUrl, { headers });
+    return this.http.get<Product[]>(url, { headers });
   }
 
   // Obtener un producto por ID

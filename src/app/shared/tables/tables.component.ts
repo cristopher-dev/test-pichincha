@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -9,7 +9,7 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class TablesComponent {
   private searchTerm$ = new Subject<string>();
-
+  @Input() body = [];
   header = [
     {
       th: 'id',
@@ -31,48 +31,6 @@ export class TablesComponent {
     },
     {
       th: 'acción',
-    },
-  ];
-  body = [
-    {
-      id: '111',
-      name: 'Tarjetas de Credito',
-      description: 'Tarjeta de consum bajo la modalidad de credito',
-      logo: 'mmmm',
-      date_release: '2023-10-20T22:42:31.900+00:00',
-      date_revision: '2023-10-20T22:42:31.900+00:00',
-    },
-    {
-      id: '222',
-      name: 'Tarjetas de Credito',
-      description: 'Tarjeta de consum bajo la modalidad de credito',
-      logo: 'mmmm',
-      date_release: '2023-10-20T22:42:31.900+00:00',
-      date_revision: '2023-10-20T22:42:31.900+00:00',
-    },
-    {
-      id: '333',
-      name: 'Tarjetas de Credito',
-      description: 'Tarjeta de consum bajo la modalidad de credito',
-      logo: 'mmmm',
-      date_release: '2023-10-20T22:42:31.900+00:00',
-      date_revision: '2023-10-20T22:42:31.900+00:00',
-    },
-    {
-      id: '444',
-      name: 'Tarjetas de Credito',
-      description: 'Tarjeta de consum bajo la modalidad de credito',
-      logo: 'mmmm',
-      date_release: '2023-10-20T22:42:31.900+00:00',
-      date_revision: '2023-10-20T22:42:31.900+00:00',
-    },
-    {
-      id: '555',
-      name: 'Tarjetas de Credito',
-      description: 'Tarjeta de consum bajo la modalidad de credito',
-      logo: 'mmmm',
-      date_release: '2023-10-20T22:42:31.900+00:00',
-      date_revision: '2023-10-20T22:42:31.900+00:00',
     },
   ];
 
