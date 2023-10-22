@@ -71,8 +71,8 @@ export class ListaProductosComponent implements OnInit {
   getProducts() {
     this.productosService.getProducts().subscribe((value) => {
       for (const iterator of value) {
-        iterator.date_release =this.convertDate(iterator.date_release)
-        iterator.date_revision= this.convertDate(iterator.date_revision)
+        iterator.date_release = this.convertDate(iterator.date_release);
+        iterator.date_revision = this.convertDate(iterator.date_revision);
       }
       this.body = value;
     });
@@ -102,6 +102,8 @@ export class ListaProductosComponent implements OnInit {
       };
       this.router.navigate(['/formulario-producto/editar'], navigationExtras);
     }
+
+    this.body = this.body.filter((v) => v.id !== event.data.id);
   }
 
   convertDate(data) {
