@@ -79,4 +79,8 @@ export class ListaProductosComponent implements OnInit {
     // Emitir el nuevo término de búsqueda al observable
     this.searchTerm$.next(term['data']);
   }
+
+  addButton() {
+    console.log();
+  }
 }

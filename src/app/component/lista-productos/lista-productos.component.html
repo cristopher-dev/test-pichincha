@@ -7,6 +7,13 @@
       placeholder="Buscar ID"
     />
   </form>
-  <button class="button col-1 h-25 align-self-center">agregar</button>
+  <button
+    class="button col-1 h-25 align-self-center"
+    (click)="addButton()"
+    routerLink="/formulario-producto"
+  >
+    agregar
+  </button>
 </div>
-<app-tables [body]="body" [header]="header" [searches]="searchesTable"> </app-tables>
+<app-tables [body]="body" [header]="header" [searches]="searchesTable">
+</app-tables>
