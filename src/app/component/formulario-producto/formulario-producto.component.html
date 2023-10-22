@@ -1,53 +1,79 @@
 <div
   class="vh-100 d-flex justify-content-center align-items-center d-flex flex-column"
 >
-  <div class="border border-black bg-info h-50 w-50 p-4">
+  <div class="border border-black bg-info h-75 w-50 p-4">
     <h5 class="text-center text-uppercase mb-4">Formulario de Registro</h5>
     <div class="bg-black border-bottom mb-4"></div>
 
     <!-- tu-componente.component.html -->
     <form [formGroup]="formulario" class="mb-4">
       <div class="row">
-        <div class="col-6">
+        <div class="col-6 mb-5">
           <label for="Id"><b>id</b></label>
-          <input type="text" placeholder="Ingresar Id" name="Id" required />
+          <input
+            type="text"
+            placeholder="Ingresar Id"
+            name="Id"
+            required
+            formControlName="id"
+          />
         </div>
-        <div class="col-6">
+        <div class="col-6 mb-5">
           <label for="Nombre"><b>Nombre</b></label>
           <input
             type="text"
             placeholder="Ingresar Nombre"
             name="Nombre"
             required
+            formControlName="nombre"
           />
         </div>
-        <div class="col-6">
+        <div class="col-6 mb-5">
           <label for="descripción"><b>Descripción</b></label>
           <input
             type="text"
             placeholder="Ingresar Descripción"
             name="descripción"
             required
+            formControlName="descripcion"
           />
         </div>
-        <div class="col-6">
+        <div class="col-6 mb-5">
           <label for="psw"><b>logo</b></label>
-          <input type="text" placeholder="Ingresar logo" name="logo" required />
+          <input
+            type="text"
+            placeholder="Ingresar logo"
+            name="logo"
+            required
+            formControlName="logo"
+          />
         </div>
-        <div class="col-6">
+        <div class="col-6 mb-5">
           <label for="fechaLiberacion"><b>Fecha Liberacion</b></label>
-          <input type="date" name="fechaLiberacion" required />
+          <input
+            type="date"
+            name="fechaLiberacion"
+            required
+            formControlName="fechaLiberacion"
+          />
         </div>
-        <div class="col-6">
+        <div class="col-6 mb-5">
           <label for="fechaRevision"><b>Fecha Revision</b></label>
-          <input type="date" name="fechaRevision" required />
+          <input
+            type="date"
+            name="fechaRevision"
+            required
+            formControlName="fechaRevision"
+          />
         </div>
       </div>
     </form>
 
     <div class="row">
       <div class="offset-4 col-2">
-        <button class="button" (click)="reiniciarFormulario()">Reiniciar</button>
+        <button class="button" (click)="reiniciarFormulario()">
+          Reiniciar
+        </button>
       </div>
       <div class="col-2">
         <button class="button button2" (click)="enviarFormulario()">
