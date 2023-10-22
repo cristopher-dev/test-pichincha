@@ -88,7 +88,8 @@ export class ListaProductosComponent implements OnInit {
   }
 
   dropdown(event) {
-    console.log();
-    this.router.navigate(['/formulario-producto/edit']);
+    if (event === 'edit') {
+      this.router.navigate(['/formulario-producto/editar']);
+    }
   }
 }

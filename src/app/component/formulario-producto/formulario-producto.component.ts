@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductosService } from '../../service/productos.service';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-formulario-producto',
   templateUrl: './formulario-producto.component.html',
@@ -8,13 +10,18 @@ import { ProductosService } from '../../service/productos.service';
 })
 export class FormularioProductoComponent implements OnInit {
   formulario: FormGroup;
+  idParams: string;
 
   constructor(
     private fb: FormBuilder,
-    private productosService: ProductosService
+    private productosService: ProductosService,
+    private route: ActivatedRoute
   ) {}
   ngOnInit() {
     this.inicializarFormulario();
+    this.route.paramMap.subscribe((params) => {
+      this.idParams = params.get('id');
+    });
   }
 
   private inicializarFormulario() {
