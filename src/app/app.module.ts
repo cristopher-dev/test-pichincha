@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JsonPipe, DecimalPipe } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 // ROUTER
 import { AppRoutingModule } from './app-routing.module';
@@ -52,6 +53,7 @@ import { LogoComponent } from './shared/logo/logo.component';
     NgbPaginationModule,
     NgbDatepickerModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [DecimalPipe],
   bootstrap: [AppComponent],

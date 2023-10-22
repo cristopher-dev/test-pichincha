@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { ProductosService } from '../../service/productos.service';
 @Component({
   selector: 'app-formulario-producto',
   templateUrl: './formulario-producto.component.html',
@@ -9,7 +9,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FormularioProductoComponent implements OnInit {
   formulario: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private productosService: ProductosService
+  ) {}
   ngOnInit() {
     this.inicializarFormulario();
   }
@@ -24,7 +27,7 @@ export class FormularioProductoComponent implements OnInit {
           Validators.maxLength(10),
         ],
       ],
-      nombre: [
+      name: [
         '',
         [
           Validators.required,
@@ -32,7 +35,7 @@ export class FormularioProductoComponent implements OnInit {
           Validators.maxLength(100),
         ],
       ],
-      descripcion: [
+      description: [
         '',
         [
           Validators.required,
@@ -41,8 +44,8 @@ export class FormularioProductoComponent implements OnInit {
         ],
       ],
       logo: ['', Validators.required],
-      fechaLiberacion: [null, [Validators.required, this.fechaActualValidator]],
-      fechaRevision: [null, [Validators.required, this.fechaRevisionValidator]],
+      date_release: [null, [Validators.required, this.fechaActualValidator]],
+      date_revision: [null, [Validators.required, this.fechaRevisionValidator]],
     });
   }
 
@@ -51,12 +54,24 @@ export class FormularioProductoComponent implements OnInit {
   }
 
   enviarFormulario() {
-    if (this.formulario.valid) {
-      // Realizar acciones adicionales cuando el formulario es válido
-      console.log('Formulario válido:', this.formulario.value);
-      // Puedes enviar el formulario al servidor u realizar otras acciones aquí
+    if (!this.formulario.valid) {
+      let formData = this.formulario.value;
+      formData.date_release = new Date(formData.date_release).toISOString();
+      formData.date_revision = new Date(formData.date_revision).toISOString();
+
+      // Llamar al servicio para agregar el producto
+      this.productosService.addProduct(formData).subscribe(
+        (response) => {
+          // Manejar la respuesta del servicio si es necesario
+          console.log('Producto agregado con éxito:', response);
+        },
+        (error) => {
+          // Manejar el error si ocurre
+          console.error('Error al agregar producto:', error);
+        }
+      );
     } else {
-      // Manejar acciones cuando el formulario no es válido
+      // Manejar el caso en que el formulario no es válido
       console.log(
         'Formulario no válido. Realizar acciones de manejo de errores aquí.'
       );
