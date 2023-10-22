@@ -25,7 +25,6 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { TablesComponent } from './shared/tables/tables.component';
 import { DropdownComponent } from './shared/dropdown/dropdown.component';
-import { MainComponent } from './pages/main/main.component';
 import { LogoComponent } from './shared/logo/logo.component';
 
 @NgModule({
@@ -36,7 +35,6 @@ import { LogoComponent } from './shared/logo/logo.component';
     FormularioProductoComponent,
     TablesComponent,
     DropdownComponent,
-    MainComponent,
     LogoComponent,
   ],
   imports: [
