@@ -72,8 +72,8 @@ export class FormularioProductoComponent implements OnInit {
         ],
       ],
       logo: [this.dataReceived['data']['logo'], Validators.required],
-      date_release: [null, [Validators.required, this.fechaActualValidator]],
-      date_revision: [null, [Validators.required, this.fechaRevisionValidator]],
+      date_release: [null, [Validators.required, this.currentDateValidator]],
+      date_revision: [null, [Validators.required, this.dateRevisionValidator]],
     });
 
     this.forms.get('date_release').setValue(date_release);
@@ -107,8 +107,8 @@ export class FormularioProductoComponent implements OnInit {
         ],
       ],
       logo: ['', Validators.required],
-      date_release: [null, [Validators.required, this.fechaActualValidator]],
-      date_revision: [null, [Validators.required, this.fechaRevisionValidator]],
+      date_release: [null, [Validators.required, this.currentDateValidator]],
+      date_revision: [null, [Validators.required, this.dateRevisionValidator]],
     });
   }
 
@@ -160,33 +160,45 @@ export class FormularioProductoComponent implements OnInit {
     }
   }
 
-  // Validador de fecha actual o mayor
-  fechaActualValidator(control) {
-    const selectedDate = new Date(control.value);
+  currentDateValidator(control) {
+    if (!control.value) {
+      return null;
+    }
+
+    // Obtén la fecha actual en el mismo formato y zona horaria que la fecha seleccionada
     const currentDate = new Date();
-    return selectedDate >= currentDate ? null : { fechaActual: true };
+    const selectedDate = new Date(control.value);
+
+    // Formatea ambas fechas a cadenas en formato 'YYYY-MM-DD'
+    const formattedCurrentDate = currentDate.toISOString().split('T')[0];
+    const formattedSelectedDate = selectedDate.toISOString().split('T')[0];
+
+    // Compara las fechas formateadas
+    return formattedSelectedDate >= formattedCurrentDate
+      ? null
+      : { fechaActual: true };
   }
 
   // Validador de fecha de revisión
-  fechaRevisionValidator(control) {
+  dateRevisionValidator(control) {
     if (!control.value) {
       return null;
     }
 
     const date_release = control.root.controls.date_release?.value;
-    const fechaRevision = new Date(control.value);
+    const reviewDate = new Date(control.value);
 
     const oneYearLater = new Date(date_release);
     oneYearLater.setFullYear(oneYearLater.getFullYear() + 1);
 
     oneYearLater.setUTCHours(0, 0, 0, 0);
-    fechaRevision.setUTCHours(0, 0, 0, 0);
+    reviewDate.setUTCHours(0, 0, 0, 0);
 
     // Comparar las fechas
-    const isFechaRevisionCorrecta =
-      fechaRevision.getTime() >= oneYearLater.getTime();
+    const isDateRevisionCorrect =
+      reviewDate.getTime() >= oneYearLater.getTime();
 
-    return isFechaRevisionCorrecta ? null : { fechaRevision: true };
+    return isDateRevisionCorrect ? null : { reviewDate: true };
   }
 
   convertDate(data) {
