@@ -22,7 +22,7 @@ export class TablesComponent implements OnInit {
     }
   }
 
-  @Output() dropdown = new EventEmitter<string>();
+  @Output() dropdown = new EventEmitter<object>();
 
   constructor() {}
 
@@ -66,6 +66,6 @@ export class TablesComponent implements OnInit {
   }
 
   onClickDropdown(event, data) {
-    this.dropdown.emit(event);
+    this.dropdown.emit({ event, data });
   }
 }

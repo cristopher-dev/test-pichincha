@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class FormularioProductoComponent implements OnInit {
   formulario: FormGroup;
   idParams: string;
+  dataReceived: object;
 
   constructor(
     private fb: FormBuilder,
@@ -18,13 +19,58 @@ export class FormularioProductoComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   ngOnInit() {
-    this.inicializarFormulario();
     this.route.paramMap.subscribe((params) => {
       this.idParams = params.get('id');
     });
+    // Accede a los datos pasados desde el componente anterior si están presentes
+    const datosRecibidos = history.state ? history.state.datos : null;
+
+    if (datosRecibidos && this.idParams === 'editar') {
+      this.dataReceived = datosRecibidos;
+      this.editForms();
+    } else {
+      console.log('No se encontraron datos en el estado del historial.');
+      this.startForms();
+    }
   }
 
-  private inicializarFormulario() {
+  private editForms() {
+    let date_release = this.convertDate(
+      this.dataReceived['data']['date_release']
+    );
+
+    this.formulario = this.fb.group({
+      id: [
+        this.dataReceived['data']['id'],
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(10),
+        ],
+      ],
+      name: [
+        this.dataReceived['data']['name'],
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(100),
+        ],
+      ],
+      description: [
+        this.dataReceived['data']['description'],
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(200),
+        ],
+      ],
+      logo: [this.dataReceived['data']['logo'], Validators.required],
+      date_release: [date_release, [Validators.required]],
+      date_revision: [date_release, [Validators.required]],
+    });
+  }
+
+  private startForms() {
     this.formulario = this.fb.group({
       id: [
         '',
@@ -112,5 +158,19 @@ export class FormularioProductoComponent implements OnInit {
     return fechaRevision.getTime() === unAnoDespues.getTime()
       ? null
       : { fechaRevision: true };
+  }
+
+  convertDate(data) {
+    const dateRelease = new Date(data);
+
+    // Obtener partes de la fecha
+    const month = (dateRelease.getMonth() + 1).toString().padStart(2, '0');
+    const day = dateRelease.getDate().toString().padStart(2, '0');
+    const year = dateRelease.getFullYear();
+
+    // Crear la cadena en el formato deseado
+    const formattedDate = `${month}/${day}/${year}`;
+
+    return formattedDate;
   }
 }

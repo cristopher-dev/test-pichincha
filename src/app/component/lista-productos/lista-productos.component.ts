@@ -1,6 +1,6 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { ProductosService } from 'src/app/service/productos.service';
@@ -63,11 +63,17 @@ export class ListaProductosComponent implements OnInit {
         };
       });
   }
+
   ngOnDestroy() {
     this.searchTerm$.complete();
   }
+
   getProducts() {
     this.productosService.getProducts().subscribe((value) => {
+      for (const iterator of value) {
+        iterator.date_release =this.convertDate(iterator.date_release)
+        iterator.date_revision= this.convertDate(iterator.date_revision)
+      }
       this.body = value;
     });
   }
@@ -88,8 +94,27 @@ export class ListaProductosComponent implements OnInit {
   }
 
   dropdown(event) {
-    if (event === 'edit') {
-      this.router.navigate(['/formulario-producto/editar']);
+    if (event.event === 'edit') {
+      const navigationExtras: NavigationExtras = {
+        state: {
+          datos: event,
+        },
+      };
+      this.router.navigate(['/formulario-producto/editar'], navigationExtras);
     }
+  }
+
+  convertDate(data) {
+    const dateRelease = new Date(data);
+
+    // Obtener partes de la fecha
+    const month = (dateRelease.getMonth() + 1).toString().padStart(2, '0');
+    const day = dateRelease.getDate().toString().padStart(2, '0');
+    const year = dateRelease.getFullYear();
+
+    // Crear la cadena en el formato deseado
+    const formattedDate = `${month}/${day}/${year}`;
+
+    return formattedDate;
   }
 }
