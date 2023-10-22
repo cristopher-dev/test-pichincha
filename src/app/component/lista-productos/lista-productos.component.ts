@@ -31,19 +31,19 @@ export class ListaProductosComponent implements OnInit {
         th: 'id',
       },
       {
-        th: 'name',
+        th: 'nombre',
       },
       {
-        th: 'description',
+        th: 'descripción',
       },
       {
         th: 'logo',
       },
       {
-        th: 'date_release',
+        th: 'fecha lanzamiento',
       },
       {
-        th: 'date_revision',
+        th: 'revisión de fecha',
       },
       {
         th: 'acción',

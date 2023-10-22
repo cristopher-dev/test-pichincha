@@ -165,18 +165,14 @@ export class FormularioProductoComponent implements OnInit {
       return null;
     }
 
-    // Obtén la fecha actual en el mismo formato y zona horaria que la fecha seleccionada
+    // Obtén la fecha actual
     const currentDate = new Date();
+
+    // Obtén la fecha seleccionada
     const selectedDate = new Date(control.value);
 
-    // Formatea ambas fechas a cadenas en formato 'YYYY-MM-DD'
-    const formattedCurrentDate = currentDate.toISOString().split('T')[0];
-    const formattedSelectedDate = selectedDate.toISOString().split('T')[0];
-
-    // Compara las fechas formateadas
-    return formattedSelectedDate >= formattedCurrentDate
-      ? null
-      : { fechaActual: true };
+    // Compara las fechas directamente
+    return selectedDate >= currentDate ? null : { fechaActual: true };
   }
 
   // Validador de fecha de revisión
