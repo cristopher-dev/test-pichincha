@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 // DIRECTIVE
-import { NgbdSortableHeader } from './component/lista-productos/directive/sortable.directive';
 
 // COMPONENT
 import { AppComponent } from './app.component';
@@ -48,7 +47,6 @@ import { LogoComponent } from './shared/logo/logo.component';
     BrowserModule,
     NgbAlertModule,
     AppRoutingModule,
-    NgbdSortableHeader,
     NgbTypeaheadModule,
     NgbPaginationModule,
     NgbDatepickerModule,
