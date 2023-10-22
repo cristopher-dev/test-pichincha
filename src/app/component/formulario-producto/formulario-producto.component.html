@@ -2,7 +2,9 @@
   class="vh-100 d-flex justify-content-center align-items-center d-flex flex-column text-white m-0 p-0"
 >
   <div class="w-50">
-    <button class="button button2 w-25" routerLink="/formulario-producto">atras</button>
+    <button class="button button2 w-25" routerLink="/formulario-producto">
+      atras
+    </button>
   </div>
   <div class="border border-black bg-info h-75 w-50 p-4">
     <h5 class="text-center text-uppercase mb-4">
@@ -22,6 +24,9 @@
             required
             formControlName="id"
           />
+          <div *ngIf="this.formulario.get('id').invalid" class="error-message">
+            no valido
+          </div>
         </div>
         <div class="col-6 mb-5">
           <label for="Nombre"><b>Nombre</b></label>
@@ -32,6 +37,9 @@
             required
             formControlName="name"
           />
+          <div *ngIf="this.formulario.get('name').invalid" class="error-message">
+            no valido
+          </div>
         </div>
         <div class="col-6 mb-5">
           <label for="descripción"><b>Descripción</b></label>
@@ -42,6 +50,9 @@
             required
             formControlName="description"
           />
+          <div *ngIf="this.formulario.get('description').invalid" class="error-message">
+            no valido
+          </div>
         </div>
         <div class="col-6 mb-5">
           <label for="psw"><b>logo</b></label>
@@ -52,6 +63,9 @@
             required
             formControlName="logo"
           />
+          <div *ngIf="this.formulario.get('logo').invalid" class="error-message">
+            no valido
+          </div>
         </div>
         <div class="col-6 mb-5">
           <label for="fechaLiberacion"><b>Fecha Liberacion</b></label>
@@ -61,6 +75,9 @@
             required
             formControlName="date_release"
           />
+          <div *ngIf="this.formulario.get('date_release').invalid" class="error-message">
+            no valido
+          </div>
         </div>
         <div class="col-6 mb-5">
           <label for="fechaRevision"><b>Fecha Revision</b></label>
@@ -70,6 +87,9 @@
             required
             formControlName="date_revision"
           />
+          <div *ngIf="this.formulario.get('date_revision').invalid" class="error-message">
+            no valido
+          </div>
         </div>
       </div>
     </form>
@@ -84,3 +104,9 @@
     </div>
   </div>
 </div>
+
+<app-modal
+  [showModal]="showModal"
+  [section]="sectionModal"
+  (buttonAccepts)="buttonAccepts($event)"
+></app-modal>

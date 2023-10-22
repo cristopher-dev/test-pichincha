@@ -13,6 +13,8 @@ export class FormularioProductoComponent implements OnInit {
   idParams: string;
   dataReceived: object;
   reset = true;
+  showModal = false;
+  sectionModal = '';
   constructor(
     private fb: FormBuilder,
     private productosService: ProductosService,
@@ -123,22 +125,17 @@ export class FormularioProductoComponent implements OnInit {
       // Llamar al servicio para agregar el producto
       this.productosService.updateProduct(formData).subscribe(
         (response) => {
-          alert('registro editado');
+          this.showModal = true;
+          this.sectionModal = 'REGISTRO EDITADO';
         },
         (error) => {
-          alert('registro error');
+          this.showModal = true;
+          this.sectionModal = 'REGISTRO ERROR';
         }
       );
-      return;
-    } else {
-      // Manejar el caso en que el formulario no es válido
-      console.log(
-        'Formulario no válido. Realizar acciones de manejo de errores aquí.'
-      );
-      return;
     }
 
-    if (this.formulario.valid) {
+    if (this.formulario.valid && this.idParams === 'agregar') {
       let formData = this.formulario.value;
       formData.date_release = new Date(formData.date_release).toISOString();
       formData.date_revision = new Date(formData.date_revision).toISOString();
@@ -147,17 +144,19 @@ export class FormularioProductoComponent implements OnInit {
       this.productosService.addProduct(formData).subscribe(
         (response) => {
           this.resetForms();
+          this.showModal = true;
+          this.sectionModal = 'REGISTRO GUARDADO';
         },
         (error) => {
-          // Manejar el error si ocurre
-          console.error('Error al agregar producto:', error);
+          this.showModal = true;
+          this.sectionModal = 'REGISTRO NO GUARDADO';
         }
       );
-    } else {
-      // Manejar el caso en que el formulario no es válido
-      console.log(
-        'Formulario no válido. Realizar acciones de manejo de errores aquí.'
-      );
+    }
+
+    if (!this.formulario.valid) {
+      this.showModal = true;
+      this.sectionModal = 'REVISE LOS CAMPOS POR QUE NO CUMPLE';
     }
   }
 
@@ -203,5 +202,9 @@ export class FormularioProductoComponent implements OnInit {
     const formattedDate = `${year}-${month}-${day}`;
 
     return formattedDate;
+  }
+
+  buttonAccepts(event) {
+    this.showModal = false;
   }
 }
