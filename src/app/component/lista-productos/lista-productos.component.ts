@@ -103,7 +103,17 @@ export class ListaProductosComponent implements OnInit {
       this.router.navigate(['/formulario-producto/editar'], navigationExtras);
     }
 
-    this.body = this.body.filter((v) => v.id !== event.data.id);
+    if (event.event === 'deleted') {
+      this.body = this.body.filter((v) => v.id !== event.data.id);
+      this.productosService.deleteProduct(event.data.id).subscribe(
+        (v) => {
+          console.log(v);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   convertDate(data) {

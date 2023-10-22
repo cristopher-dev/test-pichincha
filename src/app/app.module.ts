@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 // COMPONENT
 import { AppComponent } from './app.component';
 import { ListaProductosComponent } from './component/lista-productos/lista-productos.component';
-import { MenuContextualComponent } from './component/menu-contextual/menu-contextual.component';
+
 import { FormularioProductoComponent } from './component/formulario-producto/formulario-producto.component';
 
 // LIBRARIES
@@ -32,7 +32,6 @@ import { ModalComponent } from './shared/modal/modal.component';
   declarations: [
     AppComponent,
     ListaProductosComponent,
-    MenuContextualComponent,
     FormularioProductoComponent,
     TablesComponent,
     DropdownComponent,
