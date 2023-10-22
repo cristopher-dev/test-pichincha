@@ -38,7 +38,7 @@ export class ProductosService {
   // Actualizar un producto existente
   updateProduct(updatedProduct: Product): Observable<Product> {
     const headers = new HttpHeaders().set('authorId', '21755026');
-    const url = `${this.apiUrl}/${updatedProduct.id}`;
+    const url = `${this.apiUrl}/ipf-msa-productosfinancieros/bp/products`;
     return this.http.put<Product>(url, updatedProduct, { headers });
   }
 

@@ -114,7 +114,31 @@ export class FormularioProductoComponent implements OnInit {
   }
 
   sendForms() {
-    if (!this.formulario.valid) {
+    if (this.formulario.valid && this.idParams === 'editar') {
+      let formData = this.formulario.value;
+      formData.date_release = new Date(formData.date_release).toISOString();
+      formData.date_revision = new Date(formData.date_revision).toISOString();
+
+      // Llamar al servicio para agregar el producto
+      this.productosService.updateProduct(formData).subscribe(
+        (response) => {
+          console.log('editado');
+        },
+        (error) => {
+          // Manejar el error si ocurre
+          console.error('Error al agregar producto:', error);
+        }
+      );
+      return;
+    } else {
+      // Manejar el caso en que el formulario no es válido
+      console.log(
+        'Formulario no válido. Realizar acciones de manejo de errores aquí.'
+      );
+      return;
+    }
+
+    if (this.formulario.valid) {
       let formData = this.formulario.value;
       formData.date_release = new Date(formData.date_release).toISOString();
       formData.date_revision = new Date(formData.date_revision).toISOString();
