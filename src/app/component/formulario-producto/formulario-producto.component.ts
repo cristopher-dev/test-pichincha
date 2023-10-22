@@ -39,6 +39,10 @@ export class FormularioProductoComponent implements OnInit {
       this.dataReceived['data']['date_release']
     );
 
+    let date_revision = this.convertDate(
+      this.dataReceived['data']['date_revision']
+    );
+
     this.formulario = this.fb.group({
       id: [
         this.dataReceived['data']['id'],
@@ -65,9 +69,12 @@ export class FormularioProductoComponent implements OnInit {
         ],
       ],
       logo: [this.dataReceived['data']['logo'], Validators.required],
-      date_release: [date_release, [Validators.required]],
-      date_revision: [date_release, [Validators.required]],
+      date_release: [null, [Validators.required]],
+      date_revision: [null, [Validators.required]],
     });
+
+    this.formulario.get('date_release').setValue(date_release);
+    this.formulario.get('date_revision').setValue(date_revision);
   }
 
   private startForms() {
@@ -169,7 +176,7 @@ export class FormularioProductoComponent implements OnInit {
     const year = dateRelease.getFullYear();
 
     // Crear la cadena en el formato deseado
-    const formattedDate = `${month}/${day}/${year}`;
+    const formattedDate = `${year}-${month}-${day}`;
 
     return formattedDate;
   }
