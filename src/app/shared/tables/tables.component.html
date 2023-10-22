@@ -1,11 +1,13 @@
-<form [formGroup]="inputSearch" class="mb-4">
-  <input
-    type="text"
-    id="fname"
-    formControlName="inputSearch"
-    placeholder="Buscar ID"
-  />
-</form>
+<div class="row">
+  <form [formGroup]="inputSearch" class="mb-4 col-2">
+    <input
+      type="text"
+      id="fname"
+      formControlName="inputSearch"
+      placeholder="Buscar ID"
+    />
+  </form>
+</div>
 
 <table id="customers">
   <tr class="text-capitalize">
@@ -23,7 +25,7 @@
     <td>{{ item.date_release }}</td>
     <td>{{ item.date_revision }}</td>
     <td class="text-center">
-      <app-dropdown></app-dropdown>
+      <app-dropdown (onClick)="onClickDropdown($event, item)"></app-dropdown>
     </td>
   </tr>
 </table>

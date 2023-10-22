@@ -3,6 +3,7 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
+  Input,
   Output,
 } from '@angular/core';
 
@@ -13,6 +14,7 @@ import {
 })
 export class DropdownComponent {
   isDropdownOpen = false;
+
   list = [
     { id: 'deleted', value: 'eliminar' },
     { id: 'edit', value: 'editar' },

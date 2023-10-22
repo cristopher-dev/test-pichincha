@@ -90,4 +90,8 @@ export class TablesComponent implements OnInit {
       this.saveOriginData = [...this.bodies];
     }
   }
+
+  onClickDropdown(event, data) {
+    console.log();
+  }
 }
