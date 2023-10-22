@@ -75,7 +75,7 @@
     </form>
 
     <div class="row">
-      <div class="offset-4 col-2">
+      <div class="offset-4 col-2" *ngIf="reset">
         <button class="button" (click)="resetForms()">Reiniciar</button>
       </div>
       <div class="col-2">

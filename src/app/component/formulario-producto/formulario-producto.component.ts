@@ -12,7 +12,7 @@ export class FormularioProductoComponent implements OnInit {
   formulario: FormGroup;
   idParams: string;
   dataReceived: object;
-
+  reset = true;
   constructor(
     private fb: FormBuilder,
     private productosService: ProductosService,
@@ -26,6 +26,7 @@ export class FormularioProductoComponent implements OnInit {
     const datosRecibidos = history.state ? history.state.datos : null;
 
     if (datosRecibidos && this.idParams === 'editar') {
+      this.reset = false;
       this.dataReceived = datosRecibidos;
       this.editForms();
     } else {
@@ -122,11 +123,10 @@ export class FormularioProductoComponent implements OnInit {
       // Llamar al servicio para agregar el producto
       this.productosService.updateProduct(formData).subscribe(
         (response) => {
-          console.log('editado');
+          alert('registro editado');
         },
         (error) => {
-          // Manejar el error si ocurre
-          console.error('Error al agregar producto:', error);
+          alert('registro error');
         }
       );
       return;
