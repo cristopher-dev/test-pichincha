@@ -49,11 +49,11 @@ export class FormularioProductoComponent implements OnInit {
     });
   }
 
-  reiniciarFormulario() {
+  resetForms() {
     this.formulario.reset();
   }
 
-  enviarFormulario() {
+  sendForms() {
     if (!this.formulario.valid) {
       let formData = this.formulario.value;
       formData.date_release = new Date(formData.date_release).toISOString();
@@ -62,8 +62,7 @@ export class FormularioProductoComponent implements OnInit {
       // Llamar al servicio para agregar el producto
       this.productosService.addProduct(formData).subscribe(
         (response) => {
-          // Manejar la respuesta del servicio si es necesario
-          console.log('Producto agregado con éxito:', response);
+          this.resetForms();
         },
         (error) => {
           // Manejar el error si ocurre
