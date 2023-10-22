@@ -1,5 +1,7 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { ProductosService } from 'src/app/service/productos.service';
 @Component({
@@ -16,7 +18,8 @@ export class ListaProductosComponent implements OnInit {
   header: { th: string }[];
   constructor(
     private productosService: ProductosService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -82,5 +85,10 @@ export class ListaProductosComponent implements OnInit {
 
   addButton() {
     console.log();
+  }
+
+  dropdown(event) {
+    console.log();
+    this.router.navigate(['/formulario-producto/edit']);
   }
 }

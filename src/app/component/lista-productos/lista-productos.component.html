@@ -10,10 +10,10 @@
   <button
     class="button col-1 h-25 align-self-center"
     (click)="addButton()"
-    routerLink="/formulario-producto"
+    routerLink="/formulario-producto/add"
   >
     agregar
   </button>
 </div>
-<app-tables [body]="body" [header]="header" [searches]="searchesTable">
+<app-tables [body]="body" [header]="header" [searches]="searchesTable" (dropdown)="dropdown($event)">
 </app-tables>

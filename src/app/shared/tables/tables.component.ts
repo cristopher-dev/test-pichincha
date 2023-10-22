@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tables',
@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TablesComponent implements OnInit {
   bodies = [];
+  saveOriginData: any[] = [];
   @Input() header: any[] = [];
 
   @Input() set body(value: Array<any>) {
@@ -21,7 +22,7 @@ export class TablesComponent implements OnInit {
     }
   }
 
-  saveOriginData: any[] = [];
+  @Output() dropdown = new EventEmitter<string>();
 
   constructor() {}
 
@@ -65,6 +66,6 @@ export class TablesComponent implements OnInit {
   }
 
   onClickDropdown(event, data) {
-    console.log();
+    this.dropdown.emit(event);
   }
 }

@@ -9,6 +9,13 @@ body {
   width: 100% !important;
 }
 
+.bg-info {
+  background-color: #04aa6d !important;
+}
+.text-white {
+  color: white !important;
+}
+
 .button {
   background-color: #4caf50; /* Green */
   border: none;
