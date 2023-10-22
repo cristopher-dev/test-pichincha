@@ -1,13 +1,15 @@
 <div
   class="vh-100 d-flex justify-content-center align-items-center d-flex flex-column"
 >
-  <div class="border h-50 w-50 p-4">
+  <div class="border border-black bg-info h-50 w-50 p-4">
     <h5 class="text-center text-uppercase mb-4">Formulario de Registro</h5>
     <div class="bg-black border-bottom mb-4"></div>
 
-    <div class="mb-4">
-      <div class="input-group mb-3">
+    <!-- tu-componente.component.html -->
+    <form [formGroup]="formulario" class="mb-4">
+      <div class="input-group mb-5">
         <input
+          formControlName="id"
           type="text"
           class="form-control"
           placeholder="Id"
@@ -15,14 +17,16 @@
         />
         <div class="space"></div>
         <input
+          formControlName="nombre"
           type="text"
           class="form-control"
           placeholder="Nombre"
           aria-label="Nombre"
         />
       </div>
-      <div class="input-group mb-3">
+      <div class="input-group mb-5">
         <input
+          formControlName="descripcion"
           type="text"
           class="form-control"
           placeholder="Descripción"
@@ -30,20 +34,21 @@
         />
         <div class="space"></div>
         <input
+          formControlName="logo"
           type="text"
           class="form-control"
           placeholder="Logo"
           aria-label="Logo"
         />
       </div>
-      <div class="input-group mb-3 row">
+      <div class="input-group mb-5 row">
         <div class="col mb-3">
           <div class="input-group">
             <input
+              formControlName="fechaLiberacion"
               class="form-control"
               placeholder="yyyy-mm-dd"
               name="dp1"
-              [(ngModel)]="model"
               ngbDatepicker
               #d1="ngbDatepicker"
             />
@@ -59,10 +64,10 @@
         <div class="col mb-3">
           <div class="input-group">
             <input
+              formControlName="fechaRevision"
               class="form-control"
               placeholder="yyyy-mm-dd"
               name="dp2"
-              [(ngModel)]="model"
               ngbDatepicker
               #d2="ngbDatepicker"
             />
@@ -76,10 +81,25 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="w-100 text-center">
-      <button type="button" class="btn btn-primary mx-5">reiniciar</button>
-      <button type="button" class="btn btn-success mx-5">enviar</button>
+    </form>
+
+    <div
+      class="w-100 text-center h-25 d-flex flex-wrap align-content-center justify-content-center"
+    >
+      <button
+        type="button"
+        class="btn btn-primary mx-5"
+        (click)="reiniciarFormulario()"
+      >
+        reiniciar
+      </button>
+      <button
+        type="button"
+        class="btn btn-success mx-5"
+        (click)="enviarFormulario()"
+      >
+        enviar
+      </button>
     </div>
   </div>
 </div>
