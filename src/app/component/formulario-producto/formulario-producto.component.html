@@ -7,99 +7,53 @@
 
     <!-- tu-componente.component.html -->
     <form [formGroup]="formulario" class="mb-4">
-      <div class="input-group mb-5">
-        <input
-          formControlName="id"
-          type="text"
-          class="form-control"
-          placeholder="Id"
-          aria-label="Id"
-        />
-        <div class="space"></div>
-        <input
-          formControlName="nombre"
-          type="text"
-          class="form-control"
-          placeholder="Nombre"
-          aria-label="Nombre"
-        />
-      </div>
-      <div class="input-group mb-5">
-        <input
-          formControlName="descripcion"
-          type="text"
-          class="form-control"
-          placeholder="Descripción"
-          aria-label="Descripción"
-        />
-        <div class="space"></div>
-        <input
-          formControlName="logo"
-          type="text"
-          class="form-control"
-          placeholder="Logo"
-          aria-label="Logo"
-        />
-      </div>
-      <div class="input-group mb-5 row">
-        <div class="col mb-3">
-          <div class="input-group">
-            <input
-              formControlName="fechaLiberacion"
-              class="form-control"
-              placeholder="yyyy-mm-dd"
-              name="dp1"
-              ngbDatepicker
-              #d1="ngbDatepicker"
-            />
-            <button
-              class="btn btn-outline-secondary bi bi-calendar3"
-              (click)="d1.toggle()"
-              type="button"
-            >
-              <i class="fa-regular fa-clock"></i>
-            </button>
-          </div>
+      <div class="row">
+        <div class="col-6">
+          <label for="Id"><b>id</b></label>
+          <input type="text" placeholder="Ingresar Id" name="Id" required />
         </div>
-        <div class="col mb-3">
-          <div class="input-group">
-            <input
-              formControlName="fechaRevision"
-              class="form-control"
-              placeholder="yyyy-mm-dd"
-              name="dp2"
-              ngbDatepicker
-              #d2="ngbDatepicker"
-            />
-            <button
-              class="btn btn-outline-secondary bi bi-calendar3"
-              (click)="d2.toggle()"
-              type="button"
-            >
-              <i class="fa-regular fa-clock"></i>
-            </button>
-          </div>
+        <div class="col-6">
+          <label for="Nombre"><b>Nombre</b></label>
+          <input
+            type="text"
+            placeholder="Ingresar Nombre"
+            name="Nombre"
+            required
+          />
+        </div>
+        <div class="col-6">
+          <label for="descripción"><b>Descripción</b></label>
+          <input
+            type="text"
+            placeholder="Ingresar Descripción"
+            name="descripción"
+            required
+          />
+        </div>
+        <div class="col-6">
+          <label for="psw"><b>logo</b></label>
+          <input type="text" placeholder="Ingresar logo" name="logo" required />
+        </div>
+        <div class="col-6">
+          <label for="fechaLiberacion"><b>Fecha Liberacion</b></label>
+          <input type="date" name="fechaLiberacion" required />
+        </div>
+        <div class="col-6">
+          <label for="fechaRevision"><b>Fecha Revision</b></label>
+          <input type="date" name="fechaRevision" required />
         </div>
       </div>
     </form>
 
-    <div
-      class="w-100 text-center h-25 d-flex flex-wrap align-content-center justify-content-center"
-    >
-      <button
-        type="button"
-        class="btn btn-primary mx-5"
-        (click)="reiniciarFormulario()"
-      >
-        reiniciar
-      </button>
-      <button
-        type="button"
-        class="btn btn-success mx-5"
-        (click)="enviarFormulario()"
-      >
-        enviar
-      </button>
+    <div class="row">
+      <div class="offset-4 col-2">
+        <button class="button" (click)="reiniciarFormulario()">Reiniciar</button>
+      </div>
+      <div class="col-2">
+        <button class="button button2" (click)="enviarFormulario()">
+          enviar
+        </button>
+      </div>
     </div>
   </div>
 </div>
