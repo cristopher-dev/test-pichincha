@@ -1,15 +1,18 @@
-<form>
-  <input type="text" id="fname" formControlName="buscar" placeholder="Buscar" />
-  <!-- Puedes agregar un botón de envío si es necesario -->
-  <!-- <button type="submit">Buscar</button> -->
+<form [formGroup]="inputSearch" class="mb-4">
+  <input
+    type="text"
+    id="fname"
+    formControlName="inputSearch"
+    placeholder="Buscar ID"
+  />
 </form>
 
 <table id="customers">
-  <tr>
-    <th *ngFor="let item of header">{{ item.th }}</th>
+  <tr class="text-capitalize">
+    <th class="text-start" *ngFor="let item of header">{{ item.th }}</th>
   </tr>
   <tr
-    *ngFor="let item of body"
+    *ngFor="let item of bodies"
     (click)="rowClick($event, item)"
     class="pointer"
   >

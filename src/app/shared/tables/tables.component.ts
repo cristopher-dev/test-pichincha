@@ -1,46 +1,53 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tables',
   templateUrl: './tables.component.html',
   styleUrls: ['./tables.component.css'],
 })
-export class TablesComponent {
-  private searchTerm$ = new Subject<string>();
-  @Input() body = [];
-  header = [
-    {
-      th: 'id',
-    },
-    {
-      th: 'name',
-    },
-    {
-      th: 'description',
-    },
-    {
-      th: 'logo',
-    },
-    {
-      th: 'date_release',
-    },
-    {
-      th: 'date_revision',
-    },
-    {
-      th: 'acción',
-    },
-  ];
+export class TablesComponent implements OnInit {
+  inputSearch: FormGroup;
+  bodies = [];
+  private searchTerm$ = new Subject();
 
-  originalData = [...this.body];
+  @Input() set body(value: Array<any>) {
+    if (value.length > 0) {
+      this.bodies = value;
+      this.cloneOriginData();
+    }
+  }
+  @Input() header: any[] = [];
+  saveOriginData: any[] = [];
 
-  constructor() {
-    // Suscribirse al cambio de término de búsqueda después de un cierto tiempo de espera
-    this.searchTerm$.pipe(debounceTime(1000)).subscribe((term) => {
-      term = term ? term : '';
-      this.search(term);
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    if (this.bodies.length > 0) {
+      this.saveOriginData = [...this.bodies];
+    }
+    this.startForms();
+
+    this.inputSearch
+      .get('inputSearch')
+      .valueChanges.pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        takeUntil(this.searchTerm$)
+      )
+      .subscribe((term: string) => {
+        this.search(term);
+      });
+  }
+
+  ngOnDestroy() {
+    this.searchTerm$.complete();
+  }
+  private startForms() {
+    this.inputSearch = this.fb.group({
+      inputSearch: ['', [Validators.minLength(3)]],
     });
   }
 
@@ -48,33 +55,12 @@ export class TablesComponent {
     console.log(item);
   }
 
-  private search(term: string) {
-    // Restaurar los datos originales si el término de búsqueda está vacío
-    if (!term.trim()) {
-      this.body = [...this.originalData];
-      return;
-    }
+  private search(id: string) {
+    const forms = this.inputSearch.value;
 
-    const dataFilter = this.originalData.filter((item) => {
-      let isSearch = false;
-      // Verifica si alguna clave contiene el término de búsqueda
-      for (const key of Object.keys(item)) {
-        const value: string = item[key].toString().toLowerCase();
-        const searchTerm = term.toLowerCase();
-
-        const isMin = value.length >= 3;
-        if (!isMin) continue;
-
-        // Utilizar expresiones regulares para evaluar la coincidencia
-        const regex = new RegExp(`.*${searchTerm}.*`);
-        const is = regex.test(value);
-        if (is) {
-          isSearch = true;
-          break;
-        } else {
-          isSearch = false;
-        }
-      }
+    const dataFilter = this.saveOriginData.filter((item) => {
+      // Verifica si la propiedad 'id' contiene el término de búsqueda
+      const isSearch = item.id.includes(id);
 
       console.log(`Elemento:`, item, `¿Coincide?:`, isSearch);
 
@@ -82,17 +68,26 @@ export class TablesComponent {
     });
 
     if (dataFilter.length > 0) {
-      this.body = [...dataFilter];
+      this.bodies = [...dataFilter];
+    } else if (!forms.inputSearch) {
+      this.bodies = [...this.saveOriginData];
+    } else {
+      this.bodies = [];
     }
-    console.log(dataFilter);
   }
 
   public resetSearch() {
-    this.body = [...this.originalData];
+    this.bodies = [...this.saveOriginData];
   }
 
   onSearchChange(term: Event): void {
     // Emitir el nuevo término de búsqueda al observable
     this.searchTerm$.next(term['data']);
+  }
+
+  cloneOriginData() {
+    if (this.bodies.length > 0) {
+      this.saveOriginData = [...this.bodies];
+    }
   }
 }
