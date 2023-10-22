@@ -1,0 +1,13 @@
+ 
+<div *ngIf="showModal" id="modal3" class="modalmask text-center">
+  <div class="modalbox resize">
+    <div (click)="delete(false)">
+      <a title="Close" class="close">X</a>
+    </div>
+    <h2>advertencia</h2>
+    <p>desea eliminar la fila</p>
+    <div>
+      <button class="button button3" (click)="delete(true)">eliminar</button>
+    </div>
+  </div>
+</div>

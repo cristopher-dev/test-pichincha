@@ -6,7 +6,7 @@ import { FormularioProductoComponent } from './component/formulario-producto/for
 const routes: Routes = [
   { component: ListaProductosComponent, path: 'lista-productos' },
   { component: FormularioProductoComponent, path: 'formulario-producto' },
-  { component: FormularioProductoComponent, path: '**' },
+  { component: ListaProductosComponent, path: '**' },
 ];
 
 @NgModule({

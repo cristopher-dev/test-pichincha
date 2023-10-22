@@ -26,6 +26,7 @@ import {
 import { TablesComponent } from './shared/tables/tables.component';
 import { DropdownComponent } from './shared/dropdown/dropdown.component';
 import { LogoComponent } from './shared/logo/logo.component';
+import { ModalComponent } from './shared/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LogoComponent } from './shared/logo/logo.component';
     TablesComponent,
     DropdownComponent,
     LogoComponent,
+    ModalComponent,
   ],
   imports: [
     JsonPipe,

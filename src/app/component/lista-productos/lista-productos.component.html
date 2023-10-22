@@ -1,1 +1,12 @@
-<app-tables [body]="body" [header]="header"></app-tables>
+<div class="row justify-content-between mx-5 mb-4">
+  <form [formGroup]="inputSearch" class="col-2 h-25">
+    <input
+      type="text"
+      id="fname"
+      formControlName="inputSearch"
+      placeholder="Buscar ID"
+    />
+  </form>
+  <button class="button col-1 h-25 align-self-center">agregar</button>
+</div>
+<app-tables [body]="body" [header]="header" [searches]="searchesTable"> </app-tables>
