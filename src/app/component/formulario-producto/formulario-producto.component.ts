@@ -130,7 +130,7 @@ export class FormularioProductoComponent implements OnInit {
         },
         (error) => {
           this.showModal = true;
-          this.sectionModal = 'REGISTRO ERROR';
+          this.sectionModal = `REGISTRO ERROR\n ${error.error}`;
         }
       );
     }
