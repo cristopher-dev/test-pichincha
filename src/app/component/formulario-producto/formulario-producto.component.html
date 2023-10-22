@@ -13,7 +13,7 @@
     <div class="bg-black border-bottom mb-4"></div>
 
     <!-- tu-componente.component.html -->
-    <form [formGroup]="formulario" class="mb-4">
+    <form [formGroup]="forms" class="mb-4">
       <div class="row">
         <div class="col-6 mb-5">
           <label for="Id"><b>id</b></label>
@@ -24,7 +24,7 @@
             required
             formControlName="id"
           />
-          <div *ngIf="this.formulario.get('id').invalid" class="error-message">
+          <div *ngIf="this.forms.get('id').invalid" class="error-message">
             no valido
           </div>
         </div>
@@ -37,7 +37,7 @@
             required
             formControlName="name"
           />
-          <div *ngIf="this.formulario.get('name').invalid" class="error-message">
+          <div *ngIf="this.forms.get('name').invalid" class="error-message">
             no valido
           </div>
         </div>
@@ -50,7 +50,7 @@
             required
             formControlName="description"
           />
-          <div *ngIf="this.formulario.get('description').invalid" class="error-message">
+          <div *ngIf="this.forms.get('description').invalid" class="error-message">
             no valido
           </div>
         </div>
@@ -63,7 +63,7 @@
             required
             formControlName="logo"
           />
-          <div *ngIf="this.formulario.get('logo').invalid" class="error-message">
+          <div *ngIf="this.forms.get('logo').invalid" class="error-message">
             no valido
           </div>
         </div>
@@ -75,7 +75,7 @@
             required
             formControlName="date_release"
           />
-          <div *ngIf="this.formulario.get('date_release').invalid" class="error-message">
+          <div *ngIf="this.forms.get('date_release').invalid" class="error-message">
             no valido
           </div>
         </div>
@@ -87,7 +87,7 @@
             required
             formControlName="date_revision"
           />
-          <div *ngIf="this.formulario.get('date_revision').invalid" class="error-message">
+          <div *ngIf="this.forms.get('date_revision').invalid" class="error-message">
             no valido
           </div>
         </div>

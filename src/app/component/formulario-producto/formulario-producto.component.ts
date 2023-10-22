@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./formulario-producto.component.css'],
 })
 export class FormularioProductoComponent implements OnInit {
-  formulario: FormGroup;
+  forms: FormGroup;
   idParams: string;
   dataReceived: object;
   reset = true;
@@ -46,7 +46,7 @@ export class FormularioProductoComponent implements OnInit {
       this.dataReceived['data']['date_revision']
     );
 
-    this.formulario = this.fb.group({
+    this.forms = this.fb.group({
       id: [
         this.dataReceived['data']['id'],
         [
@@ -72,16 +72,16 @@ export class FormularioProductoComponent implements OnInit {
         ],
       ],
       logo: [this.dataReceived['data']['logo'], Validators.required],
-      date_release: [null, [Validators.required]],
-      date_revision: [null, [Validators.required]],
+      date_release: [null, [Validators.required, this.fechaActualValidator]],
+      date_revision: [null, [Validators.required, this.fechaRevisionValidator]],
     });
 
-    this.formulario.get('date_release').setValue(date_release);
-    this.formulario.get('date_revision').setValue(date_revision);
+    this.forms.get('date_release').setValue(date_release);
+    this.forms.get('date_revision').setValue(date_revision);
   }
 
   private startForms() {
-    this.formulario = this.fb.group({
+    this.forms = this.fb.group({
       id: [
         '',
         [
@@ -113,12 +113,12 @@ export class FormularioProductoComponent implements OnInit {
   }
 
   resetForms() {
-    this.formulario.reset();
+    this.forms.reset();
   }
 
   sendForms() {
-    if (this.formulario.valid && this.idParams === 'editar') {
-      let formData = this.formulario.value;
+    if (this.forms.valid && this.idParams === 'editar') {
+      let formData = this.forms.value;
       formData.date_release = new Date(formData.date_release).toISOString();
       formData.date_revision = new Date(formData.date_revision).toISOString();
 
@@ -135,8 +135,8 @@ export class FormularioProductoComponent implements OnInit {
       );
     }
 
-    if (this.formulario.valid && this.idParams === 'agregar') {
-      let formData = this.formulario.value;
+    if (this.forms.valid && this.idParams === 'agregar') {
+      let formData = this.forms.value;
       formData.date_release = new Date(formData.date_release).toISOString();
       formData.date_revision = new Date(formData.date_revision).toISOString();
 
@@ -154,7 +154,7 @@ export class FormularioProductoComponent implements OnInit {
       );
     }
 
-    if (!this.formulario.valid) {
+    if (!this.forms.valid) {
       this.showModal = true;
       this.sectionModal = 'REVISE LOS CAMPOS POR QUE NO CUMPLE';
     }
@@ -169,25 +169,24 @@ export class FormularioProductoComponent implements OnInit {
 
   // Validador de fecha de revisión
   fechaRevisionValidator(control) {
-    if (!this) {
+    if (!control.value) {
       return null;
     }
-    const fechaLiberacion = this.formulario.get('fechaLiberacion')?.value;
 
-    if (!fechaLiberacion) {
-      return null; // o algún otro manejo si fechaLiberacion no está definido
-    }
-
+    const date_release = control.root.controls.date_release?.value;
     const fechaRevision = new Date(control.value);
-    const unAnoDespues = new Date(
-      fechaLiberacion.getFullYear() + 1,
-      fechaLiberacion.getMonth(),
-      fechaLiberacion.getDate()
-    );
 
-    return fechaRevision.getTime() === unAnoDespues.getTime()
-      ? null
-      : { fechaRevision: true };
+    const oneYearLater = new Date(date_release);
+    oneYearLater.setFullYear(oneYearLater.getFullYear() + 1);
+
+    oneYearLater.setUTCHours(0, 0, 0, 0);
+    fechaRevision.setUTCHours(0, 0, 0, 0);
+
+    // Comparar las fechas
+    const isFechaRevisionCorrecta =
+      fechaRevision.getTime() >= oneYearLater.getTime();
+
+    return isFechaRevisionCorrecta ? null : { fechaRevision: true };
   }
 
   convertDate(data) {
