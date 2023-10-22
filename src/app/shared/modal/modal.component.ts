@@ -6,10 +6,20 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent {
+  @Input() header = '';
+  @Input() footer = '';
+  @Input() section = '';
   @Input() showModal: boolean;
-  @Output() deleteModal: EventEmitter<any> = new EventEmitter();
-  delete(event: any): void {
-    // Emitir el evento deleteModal con el objeto event
-    this.deleteModal.emit(event);
+
+  @Output() buttonAccepts: EventEmitter<any> = new EventEmitter();
+
+  closeModal() {
+    this.showModal = false;
+    this.buttonAccepts.emit(false);
+  }
+
+  buttonAccept() {
+    this.showModal = false;
+    this.buttonAccepts.emit(true);
   }
 }

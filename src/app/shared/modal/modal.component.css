@@ -1,99 +1,87 @@
-/*Efecto*/
-.modalmask {
-  position: fixed;
-  font-family: Arial, sans-serif;
-  top: 0;
-  right: 0;
-  bottom: 0;
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
   left: 0;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 99999;
-  opacity: 0;
-  -webkit-transition: opacity 400ms ease-in;
-  -moz-transition: opacity 400ms ease-in;
-  transition: opacity 400ms ease-in;
-  pointer-events: none;
-}
-.modalmask:target {
-  opacity: 1;
-  pointer-events: auto;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-/*Formato de la ventana*/
-.modalbox {
-  width: 400px;
+/* Modal Content */
+.modal-content {
   position: relative;
-  padding: 5px 20px 13px 20px;
-  background: #fff;
-  border-radius: 3px;
-  -webkit-transition: all 500ms ease-in;
-  -moz-transition: all 500ms ease-in;
-  transition: all 500ms ease-in;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
 }
 
-/*Movimientos*/
-.movedown {
-  margin: 0 auto;
-}
-.rotate {
-  margin: 10% auto;
-  -webkit-transform: scale(-5, -5);
-  transform: scale(-5, -5);
-}
-.resize {
-  margin: 10% auto;
-  width: 0;
-  height: 0;
-}
-.modalmask:target .movedown {
-  margin: 10% auto;
-}
-.modalmask:target .rotate {
-  transform: rotate(360deg) scale(1, 1);
-  -webkit-transform: rotate(360deg) scale(1, 1);
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
-.modalmask:target .resize {
-  width: 400px;
-  height: 200px;
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
-/*Boton de cerrar*/
+/* The Close Button */
 .close {
-  background: #606061;
-  color: #ffffff;
-  line-height: 25px;
-  position: absolute;
-  right: 1px;
-  text-align: center;
-  top: 1px;
-  width: 24px;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 3px;
-}
-
-.close:hover {
-  background: #faac58;
-  color: #222;
-}
-
-.button {
-  background-color: #4caf50; /* Green */
-  border: none;
   color: white;
-  padding: 15px 32px;
-  text-align: center;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
   cursor: pointer;
 }
 
-.button2 {
-  background-color: #008cba;
-} /* Blue */
-.button3 {
-  background-color: #f44336;
-} /* Red */
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {
+  padding: 2px 16px;
+}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.size-modal {
+  height: 30%;
+  width: 30%;
+}

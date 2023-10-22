@@ -10,12 +10,14 @@ import { ProductosService } from 'src/app/service/productos.service';
   styleUrls: ['./lista-productos.component.css'],
 })
 export class ListaProductosComponent implements OnInit {
-  inputSearch: FormGroup;
+  public inputSearch: FormGroup;
   public searchesTable: object;
   private searchTerm$ = new Subject();
-
+  public openModals = false;
   public body = [];
   header: { th: string }[];
+  dropdowns: object;
+
   constructor(
     private productosService: ProductosService,
     private fb: FormBuilder,
@@ -94,6 +96,7 @@ export class ListaProductosComponent implements OnInit {
   }
 
   dropdown(event) {
+    this.dropdowns = event;
     if (event.event === 'edit') {
       const navigationExtras: NavigationExtras = {
         state: {
@@ -104,15 +107,7 @@ export class ListaProductosComponent implements OnInit {
     }
 
     if (event.event === 'deleted') {
-      this.body = this.body.filter((v) => v.id !== event.data.id);
-      this.productosService.deleteProduct(event.data.id).subscribe(
-        (v) => {
-          console.log(v);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      this.openModals = true;
     }
   }
 
@@ -128,5 +123,24 @@ export class ListaProductosComponent implements OnInit {
     const formattedDate = `${month}/${day}/${year}`;
 
     return formattedDate;
+  }
+
+  modal(id) {
+    this.body = this.body.filter((v) => v.id !== id);
+    this.productosService.deleteProduct(id).subscribe(
+      (v) => {
+        console.log(v);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  buttonAccepts(event) {
+    this.openModals = false;
+    if (event) {
+      this.modal(this.dropdowns['data'].id);
+    }
   }
 }

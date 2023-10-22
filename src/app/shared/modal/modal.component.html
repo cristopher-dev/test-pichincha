@@ -1,13 +1,22 @@
- 
-<div *ngIf="showModal" id="modal3" class="modalmask text-center">
-  <div class="modalbox resize">
-    <div (click)="delete(false)">
-      <a title="Close" class="close">X</a>
+<!-- modal.component.html -->
+<div
+  *ngIf="showModal"
+  class="modal"
+  [ngStyle]="{ display: showModal ? 'block' : 'none' }"
+>
+  <div class="modal-content size-modal">
+    <div class="modal-header text-center">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2 class="w-100">{{ header }}</h2>
     </div>
-    <h2>advertencia</h2>
-    <p>desea eliminar la fila</p>
-    <div>
-      <button class="button button3" (click)="delete(true)">eliminar</button>
+    <div class="modal-body text-center">
+      <p class="w-100">{{ section }}</p>
+    </div>
+    <div class="w-25 text-center w-100 my-2">
+      <button class="button button2" (click)="buttonAccept()">aceptar</button>
+    </div>
+    <div class="modal-footer text-center">
+      <h3 class="w-100">{{ footer }}</h3>
     </div>
   </div>
 </div>
