@@ -1,27 +1,32 @@
-# Pichincha
+# banco pichincha
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.7.
+Banco Pichincha es el mayor banco privado de Ecuador
 
-## Development server
+## Tabla de Contenidos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. [Instalación](#instalación)
+2. [Configuración](#configuración)
+3. [Uso](#uso)
+4. [Contribución](#contribución)
+5. [Licencia](#licencia)
 
-## Code scaffolding
+## Instalación
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clona este repositorio. https://github.com/cristopher-dev/test-pichincha.git
+2. Ejecuta el comando `npm install` para instalar las dependencias.
 
-## Build
+## Configuración
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- inicia con el comando npm start
 
-## Running unit tests
+## Uso
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+CRUD (Create, Read, Update, Delete)
 
-## Running end-to-end tests
+## Licencia
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Este proyecto está bajo la Licencia MIT
 
-## Further help
+## Contacto
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Si tienes preguntas, por favor contacta a [cristopher ] .
